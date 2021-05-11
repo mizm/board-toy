@@ -13,6 +13,8 @@ public class BoardTest {
     String content;
     String title;
 
+
+
     @BeforeEach
     void beforeEach() {
         user = user.builder()

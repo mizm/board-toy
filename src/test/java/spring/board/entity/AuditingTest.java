@@ -1,14 +1,14 @@
 package spring.board.entity;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import spring.board.repository.BoardRepository;
 import spring.board.repository.CommentRepository;
 import spring.board.repository.UserRepository;
+
+import javax.persistence.EntityManager;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -24,6 +24,9 @@ public class AuditingTest {
 
     @Autowired
     CommentRepository commentRepository;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     void 유저_Auditing() {

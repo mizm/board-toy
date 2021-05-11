@@ -8,6 +8,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import spring.board.entity.Board;
 import spring.board.entity.User;
 
+import javax.persistence.EntityManager;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -25,6 +27,9 @@ class BoardRepositoryTest {
 
     @Autowired
     BoardRepository boardRepository;
+
+    @Autowired
+    EntityManager em;
 
     @BeforeEach
     void beforeEach() {
@@ -70,5 +75,6 @@ class BoardRepositoryTest {
 
         //@DataJpaTest에서는 Auditing이 찍히지 않는다.
     }
+
 
 }
