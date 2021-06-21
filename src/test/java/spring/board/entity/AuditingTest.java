@@ -49,17 +49,17 @@ public class AuditingTest {
                 .password("test")
                 .build();
 
-        Board board = Board.builder()
+        Article article = Article.builder()
                 .content("test")
                 .title("title")
                 .user(user)
                 .build();
         User saveUser = userRepository.save(user);
-        Board saveBoard = boardRepository.save(board);
-        assertThat(saveBoard.getCreatedDate()).isNotNull();
-        assertThat(saveBoard.getModifiedDate()).isNotNull();
-        assertThat(saveBoard.getCreatedBy()).isNotNull();
-        assertThat(saveBoard.getUpdatedBy()).isNotNull();
+        Article saveArticle = boardRepository.save(article);
+        assertThat(saveArticle.getCreatedDate()).isNotNull();
+        assertThat(saveArticle.getModifiedDate()).isNotNull();
+        assertThat(saveArticle.getCreatedBy()).isNotNull();
+        assertThat(saveArticle.getUpdatedBy()).isNotNull();
 
     }
 
@@ -71,19 +71,19 @@ public class AuditingTest {
                 .password("test")
                 .build();
 
-        Board board = Board.builder()
+        Article article = Article.builder()
                 .content("test")
                 .title("title")
                 .user(user)
                 .build();
 
         Comment comment = Comment.builder()
-                .board(board)
+                .board(article)
                 .user(user)
                 .content("test")
                 .build();
         User saveUser = userRepository.save(user);
-        Board saveBoard = boardRepository.save(board);
+        Article saveArticle = boardRepository.save(article);
         Comment saveComment = commentRepository.save(comment);
         assertThat(saveComment.getCreatedDate()).isNotNull();
         assertThat(saveComment.getModifiedDate()).isNotNull();

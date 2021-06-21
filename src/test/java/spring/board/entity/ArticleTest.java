@@ -1,13 +1,12 @@
 package spring.board.entity;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BoardTest {
+public class ArticleTest {
 
     User user;
     String content;
@@ -29,15 +28,15 @@ public class BoardTest {
 
     @Test
     void 게시판생성성공테스트() {
-        Board board = Board.builder()
+        Article article = Article.builder()
                 .content(content)
                 .title(title)
                 .user(user)
                 .build();
 
-        assertThat(board.getContent()).isEqualTo(content);
-        assertThat(board.getTitle()).isEqualTo(title);
-        assertThat(board.getUser()).isEqualTo(user);
+        assertThat(article.getContent()).isEqualTo(content);
+        assertThat(article.getTitle()).isEqualTo(title);
+        assertThat(article.getUser()).isEqualTo(user);
     }
     @Test
     void 게시판제목없은실패테스트() {
@@ -45,7 +44,7 @@ public class BoardTest {
 
         assertThrows(IllegalArgumentException.class, () ->
         {
-            Board board = Board.builder()
+            Article article = Article.builder()
                     .content(content)
                     .title(title)
                     .user(user)
@@ -53,7 +52,7 @@ public class BoardTest {
         });
         assertThrows(IllegalArgumentException.class, () ->
         {
-            Board board = Board.builder()
+            Article article = Article.builder()
                     .content(content)
                     .title(null)
                     .user(user)
@@ -66,7 +65,7 @@ public class BoardTest {
 
         assertThrows(IllegalArgumentException.class, () ->
         {
-            Board board = Board.builder()
+            Article article = Article.builder()
                     .content(content)
                     .title(title)
                     .user(user)
@@ -74,7 +73,7 @@ public class BoardTest {
         });
         assertThrows(IllegalArgumentException.class, () ->
         {
-            Board board = Board.builder()
+            Article article = Article.builder()
                     .content(null)
                     .title(title)
                     .user(user)
@@ -88,7 +87,7 @@ public class BoardTest {
 
         assertThrows(IllegalArgumentException.class, () ->
         {
-            Board board = Board.builder()
+            Article article = Article.builder()
                     .content(content)
                     .title(title)
                     .user(user)
@@ -96,7 +95,7 @@ public class BoardTest {
         });
         assertThrows(IllegalArgumentException.class, () ->
         {
-            Board board = Board.builder()
+            Article article = Article.builder()
                     .content(content)
                     .title(title)
                     .user(null)

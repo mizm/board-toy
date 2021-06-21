@@ -1,9 +1,6 @@
 package spring.board.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -11,23 +8,24 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "comments")
-public class Comment extends BaseTimeEntity{
+@Table(name = "articles")
+public class Article extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 500)
+    private String title;
+
+    private String slug;
+
+    private String description;
+
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private User author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_id")
-    private Article article;
-
 }
-nb

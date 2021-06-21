@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
-import spring.board.entity.Board;
+import spring.board.entity.Article;
 import spring.board.entity.User;
 
 import javax.persistence.EntityManager;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 만약 최적하한 별도의 데이터소스를 사용하여 테스트하고 싶다면 기본 설정된 데이터소스를 사용하지 않도록 아래와 같이 설정해도 됩니다.
  */
 @DataJpaTest
-class BoardRepositoryTest {
+class ArticleRepositoryTest {
     User user;
     String content;
     String title;
@@ -53,25 +53,25 @@ class BoardRepositoryTest {
         DataIntegrityViolationException : 제약조건 위반
         DuplicateKeyException : 중복 키
          */
-        Board board = Board.builder()
+        Article article = Article.builder()
                 .title(title)
                 .content(content)
                 .user(user)
                 .build();
         assertThrows(DataIntegrityViolationException.class, () -> {
-            boardRepository.save(board);
+            boardRepository.save(article);
         });
 
     }
 
     @Test
     void 생성_성공테스트() {
-        Board board = Board.builder()
+        Article article = Article.builder()
                 .title(title)
                 .content(content)
                 .user(user)
                 .build();
-        boardRepository.save(board);
+        boardRepository.save(article);
 
         //@DataJpaTest에서는 Auditing이 찍히지 않는다.
     }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import spring.board.entity.Board;
+import spring.board.entity.Article;
 import spring.board.entity.Comment;
 import spring.board.entity.User;
 import spring.board.repository.BoardRepository;
@@ -41,21 +41,21 @@ class CommentServiceTest {
     void beforeEach() {
         User user = new User("test","pass","email");
         userRepository.save(user);
-        Board board = Board.builder()
+        Article article = Article.builder()
                 .title("test")
                 .content("test")
                 .user(user)
                 .build();
-        boardRepository.save(board);
+        boardRepository.save(article);
 
         comment1 = Comment.builder()
                 .user(user)
-                .board(board)
+                .board(article)
                 .content("test1")
                 .build();
         comment2 = Comment.builder()
                 .user(user)
-                .board(board)
+                .board(article)
                 .content("test2")
                 .build();
     }

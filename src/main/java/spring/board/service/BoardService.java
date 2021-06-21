@@ -3,7 +3,7 @@ package spring.board.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import spring.board.entity.Board;
+import spring.board.entity.Article;
 import spring.board.repository.BoardRepository;
 import spring.board.service.exceptions.ResourceNotFoundException;
 
@@ -17,15 +17,15 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Board add(Board board) {
-        return boardRepository.save(board);
+    public Article add(Article article) {
+        return boardRepository.save(article);
     }
 
-    public Board findOne(Long boardId) {
+    public Article findOne(Long boardId) {
         return boardRepository.findById(boardId).orElseThrow(() -> new ResourceNotFoundException("board not found"));
     }
 
-    public List<Board> findAll() {
+    public List<Article> findAll() {
         return boardRepository.findAll();
     }
 }
