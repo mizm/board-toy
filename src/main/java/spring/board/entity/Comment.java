@@ -30,4 +30,3 @@ public class Comment extends BaseTimeEntity{
     private Article article;
 
 }
-nb
