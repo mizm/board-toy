@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import spring.board.entity.User;
 import spring.board.service.exceptions.ResourceNotFoundException;
@@ -32,12 +34,12 @@ class UserServiceTest {
     @BeforeEach
     void beforeEach() {
         user = User.builder()
-                .username("test")
+                .name("test")
                 .email("test@test.com")
                 .password("holiy")
                 .build();
         user2 = User.builder()
-                .username("test2")
+                .name("test2")
                 .email("test2@test.com")
                 .password("holiy")
                 .build();
@@ -85,15 +87,10 @@ class UserServiceTest {
         assertThat(users).contains(user,user2);
     }
 
-
     private void checkUser(User user1, User user2) {
-        assertThat(user1.getUsername()).isEqualTo(user2.getUsername());
+        assertThat(user1.getName()).isEqualTo(user2.getName());
         assertThat(user1.getEmail()).isEqualTo(user2.getEmail());
         assertThat(user1.getPassword()).isEqualTo(user2.getPassword());
-
-        // 영속성 컨텍스트에서는 동일성이 보장된다.
-        assertThat(user1.getModifiedDate()).isEqualTo(user2.getModifiedDate());
-        assertThat(user1.getCreatedDate()).isEqualTo(user2.getCreatedDate());
     }
 
 

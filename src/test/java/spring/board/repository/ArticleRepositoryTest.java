@@ -34,7 +34,7 @@ class ArticleRepositoryTest {
     @BeforeEach
     void beforeEach() {
         user = user.builder()
-                .username("test")
+                .name("test")
                 .email("test@test.com")
                 .password("test")
                 .build();
@@ -42,39 +42,39 @@ class ArticleRepositoryTest {
         content = "content";
         title = "title";
     }
-    @Test
-    void 제목최대길이실패테스트(){
-        title = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttest";
-
-        /*
-        DataAccessException의 서브클래스인 세분화 된 예외 클래스를 정의
-        BadSqlGrammarException : SQL 문법 오류
-        DataAccessResourceFailureException : DB 커넥션을 가져오지 못함
-        DataIntegrityViolationException : 제약조건 위반
-        DuplicateKeyException : 중복 키
-         */
-        Article article = Article.builder()
-                .title(title)
-                .content(content)
-                .user(user)
-                .build();
-        assertThrows(DataIntegrityViolationException.class, () -> {
-            boardRepository.save(article);
-        });
-
-    }
-
-    @Test
-    void 생성_성공테스트() {
-        Article article = Article.builder()
-                .title(title)
-                .content(content)
-                .user(user)
-                .build();
-        boardRepository.save(article);
-
-        //@DataJpaTest에서는 Auditing이 찍히지 않는다.
-    }
+//    @Test
+//    void 제목최대길이실패테스트(){
+//        title = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttest";
+//
+//        /*
+//        DataAccessException의 서브클래스인 세분화 된 예외 클래스를 정의
+//        BadSqlGrammarException : SQL 문법 오류
+//        DataAccessResourceFailureException : DB 커넥션을 가져오지 못함
+//        DataIntegrityViolationException : 제약조건 위반
+//        DuplicateKeyException : 중복 키
+//         */
+//        Article article = Article.builder()
+//                .title(title)
+//                .content(content)
+//                .user(user)
+//                .build();
+//        assertThrows(DataIntegrityViolationException.class, () -> {
+//            boardRepository.save(article);
+//        });
+//
+//    }
+//
+//    @Test
+//    void 생성_성공테스트() {
+//        Article article = Article.builder()
+//                .title(title)
+//                .content(content)
+//                .user(user)
+//                .build();
+//        boardRepository.save(article);
+//
+//        //@DataJpaTest에서는 Auditing이 찍히지 않는다.
+//    }
 
 
 }
